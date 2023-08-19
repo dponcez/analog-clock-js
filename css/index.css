@@ -1,0 +1,62 @@
+:root {
+  /* SIZE */
+  --sz: 100%;
+  --svh: 100svh;
+  --pd: 1.25rem;
+  --clk-sz: 10rem;
+  /* FONT */
+  --font-play: 'Play', sans-serif;
+  /* COLORS */
+  --dark-color: hsl(210, 29%, 24%);
+  --light-color: hsl(192, 15%, 94%);
+  --dial-hour-color: hsl(204, 70%, 53%);
+  --dial-minute-color: hsl(6, 63%, 46%);
+  --dial-second-color: hsl(168, 76%, 36%);
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html,
+body { margin: 0; }
+
+body {
+  background-color: var(--light-color);
+  font: 600 var(--pd) var(--font-play);
+  --webkit-font-smoothing: antialiased;
+  --moz-osx-font-smoothing: greyscale;
+}
+
+.container {
+  display: grid;
+  place-items: center;
+  height: var(--svh)
+}
+
+.clock,
+.clock--container,
+.dials--container { position: relative; }
+
+.clock,
+.indicators
+.dials--container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clock--container {
+  .clock {
+    width: calc(var(--clk-sz) * 2.175);
+    height: calc(var(--clk-sz) * 2.175);
+    border-radius: 50%;
+    box-shadow: .35vmin .35vmin .5rem rgba(0,0,0,.35) inset,
+    -.35vmin -.35vmin .5rem rgba(238, 230, 230, 0.75) inset;
+    .dials--container {
+      .dials {
+        transform: rotate(calc(360 * var(--i)))
+      }
+    }
+  }
+}
