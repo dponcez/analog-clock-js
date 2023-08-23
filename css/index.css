@@ -9,9 +9,6 @@
   /* COLORS */
   --dark-color: hsl(210, 29%, 24%);
   --light-color: hsl(192, 15%, 94%);
-  --dial-hour-color: hsl(204, 70%, 53%);
-  --dial-minute-color: hsl(6, 63%, 46%);
-  --dial-second-color: hsl(168, 76%, 36%);
 }
 
 *,
@@ -23,7 +20,8 @@ body { margin: 0; }
 
 body {
   background-color: var(--light-color);
-  font: 600 var(--pd) var(--font-play);
+  font: 700 var(--pd) var(--font-play);
+  color: var(--dark-color);
   --webkit-font-smoothing: antialiased;
   --moz-osx-font-smoothing: greyscale;
 }
@@ -35,27 +33,97 @@ body {
 }
 
 .clock,
-.clock--container,
-.dials--container { position: relative; }
-
-.clock,
-.indicators
-.dials--container {
+.dials--container,
+.number--container {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.clock,
+.dials--container { position: relative; }
+.number,
+.number--container { position: absolute; }
+
 .clock--container {
+  display: block;
   .clock {
     width: calc(var(--clk-sz) * 2.175);
     height: calc(var(--clk-sz) * 2.175);
     border-radius: 50%;
+    border: var(--pd) solid var(--light-color);
     box-shadow: .35vmin .35vmin .5rem rgba(0,0,0,.35) inset,
-    -.35vmin -.35vmin .5rem rgba(238, 230, 230, 0.75) inset;
+    -.35vmin -.35vmin .5rem rgba(238, 230, 230, 0.75) inset, .25vmin .25vmin .5rem rgba(0,0,0,.25);
+    .number--container {
+      width: 1ch;
+      height: var(--sz);
+      border-radius: inherit;
+      .number {
+        inset: .25rem 0;
+        transform: rotate(calc(30deg * var(--i)));
+      }
+      .small {
+        --dial-second-color: hsl(336.59deg 80.16% 45.97%);
+        font-size: 1rem;
+        font-weight: 400;
+        color: var(--dial-second-color)
+      }
+    }
     .dials--container {
-      .dials {
-        transform: rotate(calc(360 * var(--i)))
+      z-index: 1;
+      &::before {
+        content: '';
+        width: calc(var(--pd) * .75);
+        height: calc(var(--pd) * .75);
+        border-radius: 50%;
+        position: absolute;
+        bottom: 0;
+        transform: translate(0, 0);
+        background-color: var(--light-color);
+        box-shadow: 0 0 .35vmin rgba(0,0,0,.35);
+        z-index: 2;
+      }
+      .hand {
+        width: .2rem;
+        position: absolute;
+        border-radius: var(--pd);
+        background-color: var(--dial-color);
+        bottom: 0;
+        transform-origin: bottom center;
+        transform: translateY(0) rotate(0);
+        animation: all 0.05s cubic-bezier(0.1, 2.7, 0.58, 1);
+        &::before,
+        &::after {
+          content: '';
+          position: absolute;
+          background-color: var(--dial-color)
+        }
+        &::before {
+          width: .4rem;
+          bottom: -1rem;
+          transform: translate(-30%);
+          border-radius: 1rem;
+        }
+        &::after {
+          --rd: .35rem;
+          width: var(--rd);
+          height: var(--rd);
+          border-radius: 50% 50% 0 0;
+          transform: translate(-25%, -.5rem);
+        }
+      }
+      .hrs {
+        height: 8rem;
+        &::before { height: 1.25rem; }
+      }
+      .mins {
+        height: 7rem;
+        &::before { height: 1.35rem; }
+      }
+      .secs {
+        width: .135rem;
+        height: 9rem;
+        &::before { height: 1.45rem; }
       }
     }
   }
