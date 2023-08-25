@@ -43,6 +43,7 @@ body {
 .clock,
 .dials--container { position: relative; }
 .number,
+.number b,
 .number--container { position: absolute; }
 
 .clock--container {
@@ -62,6 +63,7 @@ body {
         inset: .25rem 0;
         transform: rotate(calc(30deg * var(--i)));
       }
+      .number b { transform: rotate(calc(-30deg * var(--i))); }
       .small {
         --dial-second-color: hsl(336.59deg 80.16% 45.97%);
         font-size: 1rem;
@@ -77,8 +79,8 @@ body {
         height: calc(var(--pd) * .75);
         border-radius: 50%;
         position: absolute;
-        bottom: 0;
-        transform: translate(0, 0);
+        top: 50%;
+        transform: translateY(-50%);
         background-color: var(--light-color);
         box-shadow: 0 0 .35vmin rgba(0,0,0,.35);
         z-index: 2;
@@ -113,11 +115,11 @@ body {
         }
       }
       .hrs {
-        height: 8rem;
+        height: 7rem;
         &::before { height: 1.25rem; }
       }
       .mins {
-        height: 7rem;
+        height: 8rem;
         &::before { height: 1.35rem; }
       }
       .secs {
