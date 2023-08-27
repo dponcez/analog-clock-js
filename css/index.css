@@ -6,6 +6,7 @@
   --clk-sz: 10rem;
   /* FONT */
   --font-play: 'Play', sans-serif;
+  --fnt-abel: 'Abel', sans-serif;
   /* COLORS */
   --dark-color: hsl(210, 29%, 24%);
   --light-color: hsl(192, 15%, 94%);
@@ -42,8 +43,8 @@ body {
 
 .clock,
 .dials--container { position: relative; }
+.heading,
 .number,
-.number b,
 .number--container { position: absolute; }
 
 .clock--container {
@@ -55,6 +56,11 @@ body {
     border: var(--pd) solid var(--light-color);
     box-shadow: .35vmin .35vmin .5rem rgba(0,0,0,.35) inset,
     -.35vmin -.35vmin .5rem rgba(238, 230, 230, 0.75) inset, .25vmin .25vmin .5rem rgba(0,0,0,.25);
+    .heading {
+      top: 3rem;
+      text-transform: capitalize;
+      font: 500 xx-large var(--fnt-abel);
+    }
     .number--container {
       width: 1ch;
       height: var(--sz);
@@ -63,12 +69,11 @@ body {
         inset: .25rem 0;
         transform: rotate(calc(30deg * var(--i)));
       }
-      .number b { transform: rotate(calc(-30deg * var(--i))); }
       .small {
-        --dial-second-color: hsl(336.59deg 80.16% 45.97%);
+        --red-color: hsl(336.59deg 80.16% 45.97%);
         font-size: 1rem;
         font-weight: 400;
-        color: var(--dial-second-color)
+        color: var(--red-color)
       }
     }
     .dials--container {
@@ -125,7 +130,10 @@ body {
       .secs {
         width: .135rem;
         height: 9rem;
-        &::before { height: 1.45rem; }
+        &::before { 
+          height: 2rem;
+          bottom: -2rem; 
+        }
       }
     }
   }
