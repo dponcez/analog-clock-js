@@ -7,13 +7,17 @@
   --fnt-abel: 'Abel', sans-serif;
   --dark-color: hsl(210, 29%, 24%);
   --light-color: hsl(192, 15%, 94%);
+  --red-color: hsl(357, 56%, 47%);
 }
 
 *,
 *::before,
 *::after { box-sizing: border-box; }
 
-:where(html, body) { margin: 0; }
+:where(html, body) { 
+  margin: 0; 
+  background-color: var(--light-color);
+}
 :where(.clock, .dials--container, .number--container) {
   display: flex;
   align-items: center;
@@ -21,14 +25,6 @@
 }
 :where(.clock, .dials--container) { position: relative; }
 :where(.heading, .number, .number--container, .hand) { position: absolute; }
-
-body {
-  background-color: var(--light-color);
-  font: 700 var(--pd) var(--font-play);
-  color: var(--dark-color);
-  --webkit-font-smoothing: antialiased;
-  --moz-osx-font-smoothing: greyscale;
-}
 
 .container {
   display: grid;
@@ -59,7 +55,6 @@ body {
         transform: rotate(calc(30deg * var(--i)));
       }
       .small {
-        --red-color: hsl(336.59deg 80.16% 45.97%);
         font-size: 1rem;
         font-weight: 400;
         color: var(--red-color)
